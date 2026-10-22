@@ -1,0 +1,440 @@
+<!-- @format -->
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--360 使用 Google Chrome Frame-->
+  <meta name="renderer" content="webkit">
+  <!--百度禁止转码-->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <!--Description-->
+  
+  <meta name="google-site-verification" content="J4gssmXGNI9-DfJ9w52mL5KFPlRCYvySveEN0RJFZHU" />
+  <!--Author-->
+  
+  <meta name="author" content="UncleMask">
+  
+  <!--Open Graph Title-->
+  <meta property="og:title" content="LCA问题的RMQ与倍增解法" />
+  <!--Open Graph Description-->
+  <meta property="og:description" content="" />
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="UncleMask 的博客" />
+  <!--Type page-->
+  
+  <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+  <meta property="og:image" content="/null" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- Title -->
+  
+  <title>LCA问题的RMQ与倍增解法 - UncleMask 的博客</title>
+  <!-- 添加到主屏后的标题（iOS 6 新增） -->
+  <meta name="apple-mobile-web-app-title" content="UncleMask 的博客">
+  <!-- 是否启用 WebApp 全屏模式 -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-startup-image" href="/assets/ splash-assets.png" media="(max-device-width: 700px)">
+  <!-- 禁止数字识自动别为电话号码 -->
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="shortcut icon" href="/null">
+  <!--Apple iOS Safari ICON-->
+  <link rel="apple-touch-icon" sizes="57x57" href="" />
+  <link rel="apple-touch-icon" sizes="72x72" href="" />
+  <link rel="apple-touch-icon" sizes="114x114" href="" />
+  <link rel="apple-touch-icon" sizes="144x144" href="" />
+  <!-- 添加 RSS 订阅 -->
+  <link rel="alternate" type="application/rss+xml" title="UncleMask 的博客" href="/atom.xml" />
+  <!-- uc强制竖屏 -->
+  <meta name="screen-orientation" content="portrait">
+  <!-- QQ强制竖屏 -->
+  <meta name="x5-orientation" content="portrait">
+  <!-- UC强制全屏 -->
+  <meta name="full-screen" content="yes">
+  <!-- QQ强制全屏 -->
+  <meta name="x5-fullscreen" content="true">
+  <!-- UC应用模式 -->
+  <meta name="browsermode" content="application">
+  <!-- QQ应用模式 -->
+  <meta name="x5-page-mode" content="app">
+  <!-- https://material.io/resources/icons/?style=outline -->
+  
+  <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20213_18.4a5f87dae8e6f9e336b9ad6fa00f8e8f.js"></script>
+  
+  
+<style>
+  .itp-gallery-title,
+  .itp-gallery-subtitle,
+  .itp-post-title,
+  .itp-post-entry-title,
+  .itp-post-entry-subtitle,
+  .itp-mag-logo,
+  .itp-index-title,
+  .itp-post-entry-moment,
+  .itp-header-actions-menu {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  }
+
+  .itp-header-title,
+  .itp-m3-post-entry-info .title,
+  .itp-header-actions,
+  .itp-cover-title,
+  .itp-cover-subtitle,
+  .itp-post-subtitle,
+  .itp-post-entry-title,
+  .itp-m3-cover-subtitle,
+  .itp-m3-cover-title,
+  .itp-gallery-info .title,
+  .footer-info {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  }
+
+  .article,
+  .itp-post-entry-excerpt {
+    font-family: 'SF UI Display', '.PingFang SC', 'PingFang SC', 'Neue Haas Grotesk Text Pro', 'Arial Nova', 'Segoe UI', 'Microsoft YaHei', 'Microsoft JhengHei', 'Helvetica Neue', 'Source Han Sans SC', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC', 'Helvetica', 'Hiragino Sans GB', sans-serif;
+  }
+</style>
+
+  <!-- Custom CSS/Sass -->
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--样式切换-->
+  
+  
+<link rel="stylesheet" href="/css/material3.css">
+
+  
+  
+  
+  
+  <!--highlight.js CSS-->
+  
+  
+<link rel="stylesheet" href="/css/highlight/github.css">
+
+  
+  
+  <!-- jquery -->
+  
+  <script src="/js/jquery.min.js"></script>
+  
+  <!--Comment-->
+  
+  <!--Vercel Audiences Analytics-->
+  
+  <!--umami analytics-->
+  
+  
+  
+  
+  
+  
+  <!-- Google Search Advanced
+  https://developers.google.com/search/docs/advanced/structured-data/search-gallery
+  -->
+  
+  
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": "LCA问题的RMQ与倍增解法",
+      "image": "",
+      "datePublished": "Thu Feb 01 2018 02:14:25 GMT+0800",
+      "author": [{
+        "@type": "Person",
+        "name": "UncleMask",
+        "url": "https://unclemaskcrl.github.io"
+      }]
+    }
+  </script>
+  
+  
+  
+  <!--<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      spacing: {
+        '1': '8px',
+        '2': '12px',
+        '3': '16px',
+        '4': '24px',
+        '5': '32px',
+        '6': '48px',
+      },
+      container: {
+        center: true,
+      },
+      extend: {
+        colors: {
+          tblack: '#222831',
+        },
+        boxShadow: {
+          'itp': '1px 10px 30px 0 rgb(0 0 0 / 10%)',
+        }
+      }
+    }
+  }
+</script>-->
+
+<link rel="stylesheet" href="/css/tailwind.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!--Other Pages-->
+
+
+<body>
+  <!-- Nav -->
+  
+
+
+<div class="itp-float-bar">
+  <!--所有页面都显示-->
+  <a class="itp-float-bar-item rounded" href="/" title="UncleMask 的博客">
+    
+    <iconpark-icon class="navicon" name="home"></iconpark-icon>
+    
+  </a>
+  
+  <!--只在 **文章** 页面显示-->
+  <a class="itp-float-bar-item rounded" onclick="scrollto(comment)" title="comment">
+    
+    <iconpark-icon class="navicon" name="comment"></iconpark-icon>
+    
+  </a>
+  <a class="itp-float-bar-item rounded" id="open_toc" onclick="OpenToc()" title="Table of contents">
+    
+    <iconpark-icon class="navicon" name="list"></iconpark-icon>
+    
+  </a>
+  <a class="itp-float-bar-item rounded" href="javascript:scroll(0,0)" title="to top">
+    
+    <iconpark-icon class="navicon" name="top"></iconpark-icon>
+    
+  </a>
+  
+
+  <div class="itp-float-layer itp-toc-layer">
+    <div class="clost-btn" style="display: flex;">
+      <a class="itp-float-layer-close-btn" id="close_btn">
+        <div class="close_btn_red">
+        </div>
+      </a>
+    </div>
+    
+  </div>
+  <div class="itp-float-layer-bg layer-bg-nodisplay" id="close_layer"></div>
+</div>
+
+
+<style>
+  .navicon {
+    font-size: 18px;
+    padding-top: 18px;
+    color: var(--main-black);
+  }
+</style>
+  <!-- Main Content -->
+  
+
+<section class="pjax-area">
+  <div class="content-area post-content-area">
+    <div class=" left-area"></div>
+    <div class="main-area">
+      <div class="itp-m3-card post-cover">
+        <div class="itp-m3-card-cover">
+          <div class="itp-m3-cover-bg" style="
+          background-image: url();
+          background-size: cover;
+          background-position: center center;
+        ">
+            <div class="itp-m3-card-cover-layer ">
+              <div class="info-area pjax-area">
+                <div class="itp-m3-cover-avatar">
+                  <img src="" class="nofancy">
+                </div>
+                <div class="itp-m3-cover-title" style="opacity: 1;">
+                  LCA问题的RMQ与倍增解法
+                </div>
+                <div class="itp-m3-cover-subtitle" style="opacity: 0.8;">
+                  
+2018-02-01
+<span> / </span>
+
+<a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><span class="itp-post-cat"></span><span> / </span><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%8E%9F%E5%88%9B/">原创</a>
+
+
+<span> / </span>
+1.4k
+<style>
+  .category-link {
+    color: var(--main-black);
+  }
+
+  @media print {
+    .itp-cover-subtitle a {
+      color: var(--main-black) !important;
+    }
+  }
+
+  @media screen {
+    .itp-cover-subtitle a {
+      color: #fff !important;
+    }
+  }
+</style>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article">
+          <p>LCA(Least Common Ancestors)，最近公共祖先，是指在有根树中，找出某两个结点u和v最近的公共祖先。比如在这场图中3和5的最近公共祖先就是2，5和6的最近公共祖先就是4，1和2的最近公共祖先是1 等。 暴力若两个节点分别是u,v，首先将其中一个较深的点向上跳，跳到同一高度后两个点一起跳，直到跳到同一个点，这个点即为他们的LCA。这种方法最直接，但复杂度过高，实际做的时候一定会TLE。 倍增寻找这种方法是暴力解法的一种优化，首先是记录每一个点往上跳(2 ^ j)步后的点，这一步骤可以通过DP来实现。每个点向上跳(2 ^ 0)个点后的点都是他们的父节点，另外通过(2 ^ j &#x3D; 2 ^ {j - 1} + 2 ^ {j - 1})可知，i的(2^j)祖先就是i的(2^{j-1})祖先的(2^{j-1})祖先，故而(p[i][j]&#x3D;p[p[i][j-1]][j-1])。然后得到了p数组之后，通过记录的深度d计算出可以跳的最大的j，也就是([log_2 d]+1)（向上取整）。从j的最大值向下迭代，若此时的(p[u][j] !&#x3D; p[v][j])则一起向上跳(2^j)个点，如此循环，直到结束。核心代码如下：1234567891011121314151617181920212223int lca(int u, int v){ if (d[u] &lt; d[v]) swap(u, v); &#x2F;&#x2F;我们希望u是较深的点。 for (int i &#x3D; jmax; i &gt;&#x3D; 0; i–) &#x2F;&#x2F;这个循环在完成第一步。 { if (d[v] &lt;&#x3D; d[p[u][i]]) &#x2F;&#x2F;不可以丢掉“&#x3D;“哦 { u &#x3D; p[u][i]; } } if (u &#x3D;&#x3D; v) return u; &#x2F;&#x2F;如果v是u的祖先，就可以直接返回结果了。 for (int i &#x3D; jmax; i &gt;&#x3D; 0; i–) { if (p[u][i] !&#x3D; p[v][i]) &#x2F;&#x2F;第二步。 { u &#x3D; p[u][i]; v &#x3D; p[v][i]; } } return p[u][0];} RMQ+时间戳对于时间戳这个概念我也是第一次见，简单来说就是一个树被dps时的访问顺序。在这个树中DFS遍历序列就是1 2 3 2 4 2 5 2 1 6 7 8 7 6 1。很多点被访问了不止一次。很容易想到，对于任意两个点，从一个点到另一个点，进行dfs时必定要经过它的LCA。比如4和6，遍历大致顺序为1 2 4 2 1 6，从4到6的过程中就回到了他们的LCA也就是1。所以如果一个树的编号是以先序遍历的方式来编号的话可以先通过dps整个树来得到一串时间戳，然后再查找两个点之间的那串时间戳中最小的点，那个点即为两点的LCA。其中查找的过程可以用RMQ来解决，复杂度较低。对于这种方法局限性较大，不过代码很方便，可以视情况使用。 上面两种方法都算是在线查找的方案，其实还有一种Tarjan算法，是离线的，可以通过遍历一次树即可得到所有的结果，之后会有一篇blog专门写这部分。 重要结论对于LCA来说他目前可以用到的最大的用处就是计算树上任意两点的距离。若树上两点(u,v)的路径长度为Long[u,v]，long[i]表示i到root的长度，则(Long[u,v] &#x3D; long[u]+long[v]-2*long[lca(u,v)]) 相关例题HDOJ2586</p>
+
+        </div>
+        <div class="itp-m3-post-info_area">
+          <div class="info_area-category">
+            
+            <div class="itp-m3-chip-color-list">
+              <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%8E%9F%E5%88%9B/">原创</a>
+            </div>
+            
+            
+            <div class="itp-m3-chip-normal-list">
+              <a class="tag-none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+            </div>
+            
+          </div>
+          <div class="info_area-copyright">
+            <p>本文著作权归作者&nbspUncleMask&nbsp所有，转载或引用请联系作者获得授权。</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="right-area">
+      
+      
+
+      
+    </div>
+  </div>
+  
+  <!--
+<div class="mdui-dialog" id="shareDialogText" style="text-align: center;">
+  <div class="itp-share-card" id="shareInfo">
+    <div class="itp-share-cover" style="background: url('');">
+      <div class="itp-share-layer">
+        <div class="itp-share-info">
+          <div class="itp-share-avatar">
+            <img src="" class="nofancy">
+          </div>
+          <div class="itp-share-title">LCA问题的RMQ与倍增解法</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mdui-dialog" id="shareDialogImg" style="text-align: center;">
+  分享图已生成
+</div>-->
+</section>
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="itp-footer text-center">
+  <section class="footer-info">
+    UncleMask 的博客 &copy; 2016 - 2026
+    
+    <span> / </span>
+    18k
+    
+    
+    
+    <span> / Theme</span>
+    <a href="https://github.com/aiokr/hexo-theme-type" target="_blank">Type
+    </a>
+  </section>
+  
+    <a href="../about/" target="_blank">
+      <img width="80px" height="80px" style="padding-top: 12px; display: block; margin: 0 auto;" src="https://imgur.lzmun.com/picgo/after2022/tripper2whitefull.png_avatar" alt="footer logo"></a>
+  
+</footer>
+  <!-- After footer scripts -->
+  <!-- fancybox -->
+
+<script src="/js/fancybox.umd.js" defer></script>
+<link rel="stylesheet" href="/css/fancybox.css" />
+
+<!-- mdui -->
+
+<!-- busuanzi -->
+
+<!-- highlightjs -->
+
+
+<script src="/js/highlight.min.js" async></script>
+
+<script>window.addEventListener('load', () => hljs.initHighlighting());</script>
+<script>
+  $("pre.code").each(function() {
+    $(this).html("<ol><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ol>");
+  });
+</script>
+
+
+
+<script src="/js/app.js"></script>
+
+
+
+<!--
+
+<script src="/js/canvas2image.js"></script>
+
+
+<script src="/js/shareimg.js"></script>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js" defer></script>
+-->
+<!--lazyload-->
+
+
+<script src="/js/lazyload.js"></script>
+
+
+<!--PJAX-->
+<!--Pjax from https://github.com/MoOx/pjax-->
+
+<!--<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--首页键盘快捷键-->
+
+  <style>
+  :root {
+    --main-color: #71AFDD;
+    --sub-color: #6CD9CE;
+    --main-black: #222831;
+  }
+</style>
+</body>
+
+
+
+
+</html>

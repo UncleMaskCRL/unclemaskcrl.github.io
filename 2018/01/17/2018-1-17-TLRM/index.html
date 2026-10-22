@@ -1,0 +1,440 @@
+<!-- @format -->
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--360 使用 Google Chrome Frame-->
+  <meta name="renderer" content="webkit">
+  <!--百度禁止转码-->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <!--Description-->
+  
+  <meta name="google-site-verification" content="J4gssmXGNI9-DfJ9w52mL5KFPlRCYvySveEN0RJFZHU" />
+  <!--Author-->
+  
+  <meta name="author" content="UncleMask">
+  
+  <!--Open Graph Title-->
+  <meta property="og:title" content="图论入门（不定期更新）" />
+  <!--Open Graph Description-->
+  <meta property="og:description" content="" />
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="UncleMask 的博客" />
+  <!--Type page-->
+  
+  <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+  <meta property="og:image" content="/null" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- Title -->
+  
+  <title>图论入门（不定期更新） - UncleMask 的博客</title>
+  <!-- 添加到主屏后的标题（iOS 6 新增） -->
+  <meta name="apple-mobile-web-app-title" content="UncleMask 的博客">
+  <!-- 是否启用 WebApp 全屏模式 -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-startup-image" href="/assets/ splash-assets.png" media="(max-device-width: 700px)">
+  <!-- 禁止数字识自动别为电话号码 -->
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="shortcut icon" href="/null">
+  <!--Apple iOS Safari ICON-->
+  <link rel="apple-touch-icon" sizes="57x57" href="" />
+  <link rel="apple-touch-icon" sizes="72x72" href="" />
+  <link rel="apple-touch-icon" sizes="114x114" href="" />
+  <link rel="apple-touch-icon" sizes="144x144" href="" />
+  <!-- 添加 RSS 订阅 -->
+  <link rel="alternate" type="application/rss+xml" title="UncleMask 的博客" href="/atom.xml" />
+  <!-- uc强制竖屏 -->
+  <meta name="screen-orientation" content="portrait">
+  <!-- QQ强制竖屏 -->
+  <meta name="x5-orientation" content="portrait">
+  <!-- UC强制全屏 -->
+  <meta name="full-screen" content="yes">
+  <!-- QQ强制全屏 -->
+  <meta name="x5-fullscreen" content="true">
+  <!-- UC应用模式 -->
+  <meta name="browsermode" content="application">
+  <!-- QQ应用模式 -->
+  <meta name="x5-page-mode" content="app">
+  <!-- https://material.io/resources/icons/?style=outline -->
+  
+  <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20213_18.4a5f87dae8e6f9e336b9ad6fa00f8e8f.js"></script>
+  
+  
+<style>
+  .itp-gallery-title,
+  .itp-gallery-subtitle,
+  .itp-post-title,
+  .itp-post-entry-title,
+  .itp-post-entry-subtitle,
+  .itp-mag-logo,
+  .itp-index-title,
+  .itp-post-entry-moment,
+  .itp-header-actions-menu {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  }
+
+  .itp-header-title,
+  .itp-m3-post-entry-info .title,
+  .itp-header-actions,
+  .itp-cover-title,
+  .itp-cover-subtitle,
+  .itp-post-subtitle,
+  .itp-post-entry-title,
+  .itp-m3-cover-subtitle,
+  .itp-m3-cover-title,
+  .itp-gallery-info .title,
+  .footer-info {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  }
+
+  .article,
+  .itp-post-entry-excerpt {
+    font-family: 'SF UI Display', '.PingFang SC', 'PingFang SC', 'Neue Haas Grotesk Text Pro', 'Arial Nova', 'Segoe UI', 'Microsoft YaHei', 'Microsoft JhengHei', 'Helvetica Neue', 'Source Han Sans SC', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC', 'Helvetica', 'Hiragino Sans GB', sans-serif;
+  }
+</style>
+
+  <!-- Custom CSS/Sass -->
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--样式切换-->
+  
+  
+<link rel="stylesheet" href="/css/material3.css">
+
+  
+  
+  
+  
+  <!--highlight.js CSS-->
+  
+  
+<link rel="stylesheet" href="/css/highlight/github.css">
+
+  
+  
+  <!-- jquery -->
+  
+  <script src="/js/jquery.min.js"></script>
+  
+  <!--Comment-->
+  
+  <!--Vercel Audiences Analytics-->
+  
+  <!--umami analytics-->
+  
+  
+  
+  
+  
+  
+  <!-- Google Search Advanced
+  https://developers.google.com/search/docs/advanced/structured-data/search-gallery
+  -->
+  
+  
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": "图论入门（不定期更新）",
+      "image": "",
+      "datePublished": "Wed Jan 17 2018 04:27:55 GMT+0800",
+      "author": [{
+        "@type": "Person",
+        "name": "UncleMask",
+        "url": "https://unclemaskcrl.github.io"
+      }]
+    }
+  </script>
+  
+  
+  
+  <!--<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      spacing: {
+        '1': '8px',
+        '2': '12px',
+        '3': '16px',
+        '4': '24px',
+        '5': '32px',
+        '6': '48px',
+      },
+      container: {
+        center: true,
+      },
+      extend: {
+        colors: {
+          tblack: '#222831',
+        },
+        boxShadow: {
+          'itp': '1px 10px 30px 0 rgb(0 0 0 / 10%)',
+        }
+      }
+    }
+  }
+</script>-->
+
+<link rel="stylesheet" href="/css/tailwind.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!--Other Pages-->
+
+
+<body>
+  <!-- Nav -->
+  
+
+
+<div class="itp-float-bar">
+  <!--所有页面都显示-->
+  <a class="itp-float-bar-item rounded" href="/" title="UncleMask 的博客">
+    
+    <iconpark-icon class="navicon" name="home"></iconpark-icon>
+    
+  </a>
+  
+  <!--只在 **文章** 页面显示-->
+  <a class="itp-float-bar-item rounded" onclick="scrollto(comment)" title="comment">
+    
+    <iconpark-icon class="navicon" name="comment"></iconpark-icon>
+    
+  </a>
+  <a class="itp-float-bar-item rounded" id="open_toc" onclick="OpenToc()" title="Table of contents">
+    
+    <iconpark-icon class="navicon" name="list"></iconpark-icon>
+    
+  </a>
+  <a class="itp-float-bar-item rounded" href="javascript:scroll(0,0)" title="to top">
+    
+    <iconpark-icon class="navicon" name="top"></iconpark-icon>
+    
+  </a>
+  
+
+  <div class="itp-float-layer itp-toc-layer">
+    <div class="clost-btn" style="display: flex;">
+      <a class="itp-float-layer-close-btn" id="close_btn">
+        <div class="close_btn_red">
+        </div>
+      </a>
+    </div>
+    
+  </div>
+  <div class="itp-float-layer-bg layer-bg-nodisplay" id="close_layer"></div>
+</div>
+
+
+<style>
+  .navicon {
+    font-size: 18px;
+    padding-top: 18px;
+    color: var(--main-black);
+  }
+</style>
+  <!-- Main Content -->
+  
+
+<section class="pjax-area">
+  <div class="content-area post-content-area">
+    <div class=" left-area"></div>
+    <div class="main-area">
+      <div class="itp-m3-card post-cover">
+        <div class="itp-m3-card-cover">
+          <div class="itp-m3-cover-bg" style="
+          background-image: url();
+          background-size: cover;
+          background-position: center center;
+        ">
+            <div class="itp-m3-card-cover-layer ">
+              <div class="info-area pjax-area">
+                <div class="itp-m3-cover-avatar">
+                  <img src="" class="nofancy">
+                </div>
+                <div class="itp-m3-cover-title" style="opacity: 1;">
+                  图论入门（不定期更新）
+                </div>
+                <div class="itp-m3-cover-subtitle" style="opacity: 0.8;">
+                  
+2018-01-17
+<span> / </span>
+
+<a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><span class="itp-post-cat"></span><span> / </span><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%8E%9F%E5%88%9B/">原创</a>
+
+
+<span> / </span>
+862
+<style>
+  .category-link {
+    color: var(--main-black);
+  }
+
+  @media print {
+    .itp-cover-subtitle a {
+      color: var(--main-black) !important;
+    }
+  }
+
+  @media screen {
+    .itp-cover-subtitle a {
+      color: #fff !important;
+    }
+  }
+</style>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article">
+          <p>概述图是一种比树和数组更复杂的数据结构，一般来说由顶点和边组成。通过边的连通形式的不同可以简单分类为无向图和有向图 图的储存对于绝大部分算法题都需要记录下边的具体信息，故此就有了两种储存方式。第一种即为通过邻接表矩阵来记录对于顶点Vi和顶点Vj，若有边，则(Vi,Vj)&#x3D;1，否则(Vi,Vj)&#x3D;0。若该图是一个无向图，那么它的邻接矩阵一定是以对角线为轴对称。这种储存方式虽然很一目了然，但是当这个图中具有n个点时，需要的空间为n²个位置来储存是否有连边同样的，如果用邻接表来储存图中边的信息，如下： 可以看到邻接表的实质其实就是链式储存。不过其实我觉得开一个vector数组也是完全ok的。 常用概念 顶点的度，与顶点i相关联的边的数量，记为D(i)。在有向图中还会分别记为入度ID和出度OD，这两个概念在拓扑排序中会有应用。 边数较少的叫做稀疏图，边数较多则叫稠密图。 有时边是带有权值的，这个权值可以表示从一个顶点到另一个顶点的距离、代价、耗费等。这样的图也称为带权图。 无环图：没有环的图(acyclic graph)。在有向图中，那就是有向无环图。 如果在图中任意两个点都存在路径，那么称其为连通图。 衍生概念 欧拉回路和欧拉路径将图中的所有路径走过恰好一次，那么该路径称为欧拉路径。相应的，如果这条路径是一条回路，那么称之为欧拉回路。 一个无向图存在欧拉通路的条件：G为连通图，并且G仅有两个奇度结点（度数为奇数的顶点）或者无奇度结点。 一个有向图存在欧拉通路的条件：D为有向图，D的基图连通，并且所有顶点的出度与入度都相等；或者除两个顶点外，其余顶点的出度与入度都相等，而这两个顶点中一个顶点的出度与入度之差为1，另一个顶点的出度与入度之差为-1。 一个无向图存在欧拉回路的条件：连通图中所有顶点都是偶数度。 一个有向图存在欧拉回路的条件：连通图中所有的顶点出度&#x3D;入度。 哈密顿回路和哈密顿路径将图中的所有节点走过恰好一次，那么该路径称为哈密顿路径。相应的，如果这条路径是一条回路，那么称之为哈密顿回路。 未完待续</p>
+
+        </div>
+        <div class="itp-m3-post-info_area">
+          <div class="info_area-category">
+            
+            <div class="itp-m3-chip-color-list">
+              <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%8E%9F%E5%88%9B/">原创</a>
+            </div>
+            
+            
+            <div class="itp-m3-chip-normal-list">
+              <a class="tag-none-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a><a class="tag-none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+            </div>
+            
+          </div>
+          <div class="info_area-copyright">
+            <p>本文著作权归作者&nbspUncleMask&nbsp所有，转载或引用请联系作者获得授权。</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="right-area">
+      
+      
+
+      
+    </div>
+  </div>
+  
+  <!--
+<div class="mdui-dialog" id="shareDialogText" style="text-align: center;">
+  <div class="itp-share-card" id="shareInfo">
+    <div class="itp-share-cover" style="background: url('');">
+      <div class="itp-share-layer">
+        <div class="itp-share-info">
+          <div class="itp-share-avatar">
+            <img src="" class="nofancy">
+          </div>
+          <div class="itp-share-title">图论入门（不定期更新）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mdui-dialog" id="shareDialogImg" style="text-align: center;">
+  分享图已生成
+</div>-->
+</section>
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="itp-footer text-center">
+  <section class="footer-info">
+    UncleMask 的博客 &copy; 2016 - 2026
+    
+    <span> / </span>
+    18k
+    
+    
+    
+    <span> / Theme</span>
+    <a href="https://github.com/aiokr/hexo-theme-type" target="_blank">Type
+    </a>
+  </section>
+  
+    <a href="../about/" target="_blank">
+      <img width="80px" height="80px" style="padding-top: 12px; display: block; margin: 0 auto;" src="https://imgur.lzmun.com/picgo/after2022/tripper2whitefull.png_avatar" alt="footer logo"></a>
+  
+</footer>
+  <!-- After footer scripts -->
+  <!-- fancybox -->
+
+<script src="/js/fancybox.umd.js" defer></script>
+<link rel="stylesheet" href="/css/fancybox.css" />
+
+<!-- mdui -->
+
+<!-- busuanzi -->
+
+<!-- highlightjs -->
+
+
+<script src="/js/highlight.min.js" async></script>
+
+<script>window.addEventListener('load', () => hljs.initHighlighting());</script>
+<script>
+  $("pre.code").each(function() {
+    $(this).html("<ol><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ol>");
+  });
+</script>
+
+
+
+<script src="/js/app.js"></script>
+
+
+
+<!--
+
+<script src="/js/canvas2image.js"></script>
+
+
+<script src="/js/shareimg.js"></script>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js" defer></script>
+-->
+<!--lazyload-->
+
+
+<script src="/js/lazyload.js"></script>
+
+
+<!--PJAX-->
+<!--Pjax from https://github.com/MoOx/pjax-->
+
+<!--<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--首页键盘快捷键-->
+
+  <style>
+  :root {
+    --main-color: #71AFDD;
+    --sub-color: #6CD9CE;
+    --main-black: #222831;
+  }
+</style>
+</body>
+
+
+
+
+</html>

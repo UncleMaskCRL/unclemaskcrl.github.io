@@ -1,0 +1,440 @@
+<!-- @format -->
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--360 使用 Google Chrome Frame-->
+  <meta name="renderer" content="webkit">
+  <!--百度禁止转码-->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <!--Description-->
+  
+  <meta name="google-site-verification" content="J4gssmXGNI9-DfJ9w52mL5KFPlRCYvySveEN0RJFZHU" />
+  <!--Author-->
+  
+  <meta name="author" content="UncleMask">
+  
+  <!--Open Graph Title-->
+  <meta property="og:title" content="后处理方法简单汇总" />
+  <!--Open Graph Description-->
+  <meta property="og:description" content="" />
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="UncleMask 的博客" />
+  <!--Type page-->
+  
+  <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+  <meta property="og:image" content="/null" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- Title -->
+  
+  <title>后处理方法简单汇总 - UncleMask 的博客</title>
+  <!-- 添加到主屏后的标题（iOS 6 新增） -->
+  <meta name="apple-mobile-web-app-title" content="UncleMask 的博客">
+  <!-- 是否启用 WebApp 全屏模式 -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-startup-image" href="/assets/ splash-assets.png" media="(max-device-width: 700px)">
+  <!-- 禁止数字识自动别为电话号码 -->
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="shortcut icon" href="/null">
+  <!--Apple iOS Safari ICON-->
+  <link rel="apple-touch-icon" sizes="57x57" href="" />
+  <link rel="apple-touch-icon" sizes="72x72" href="" />
+  <link rel="apple-touch-icon" sizes="114x114" href="" />
+  <link rel="apple-touch-icon" sizes="144x144" href="" />
+  <!-- 添加 RSS 订阅 -->
+  <link rel="alternate" type="application/rss+xml" title="UncleMask 的博客" href="/atom.xml" />
+  <!-- uc强制竖屏 -->
+  <meta name="screen-orientation" content="portrait">
+  <!-- QQ强制竖屏 -->
+  <meta name="x5-orientation" content="portrait">
+  <!-- UC强制全屏 -->
+  <meta name="full-screen" content="yes">
+  <!-- QQ强制全屏 -->
+  <meta name="x5-fullscreen" content="true">
+  <!-- UC应用模式 -->
+  <meta name="browsermode" content="application">
+  <!-- QQ应用模式 -->
+  <meta name="x5-page-mode" content="app">
+  <!-- https://material.io/resources/icons/?style=outline -->
+  
+  <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20213_18.4a5f87dae8e6f9e336b9ad6fa00f8e8f.js"></script>
+  
+  
+<style>
+  .itp-gallery-title,
+  .itp-gallery-subtitle,
+  .itp-post-title,
+  .itp-post-entry-title,
+  .itp-post-entry-subtitle,
+  .itp-mag-logo,
+  .itp-index-title,
+  .itp-post-entry-moment,
+  .itp-header-actions-menu {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  }
+
+  .itp-header-title,
+  .itp-m3-post-entry-info .title,
+  .itp-header-actions,
+  .itp-cover-title,
+  .itp-cover-subtitle,
+  .itp-post-subtitle,
+  .itp-post-entry-title,
+  .itp-m3-cover-subtitle,
+  .itp-m3-cover-title,
+  .itp-gallery-info .title,
+  .footer-info {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  }
+
+  .article,
+  .itp-post-entry-excerpt {
+    font-family: 'SF UI Display', '.PingFang SC', 'PingFang SC', 'Neue Haas Grotesk Text Pro', 'Arial Nova', 'Segoe UI', 'Microsoft YaHei', 'Microsoft JhengHei', 'Helvetica Neue', 'Source Han Sans SC', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC', 'Helvetica', 'Hiragino Sans GB', sans-serif;
+  }
+</style>
+
+  <!-- Custom CSS/Sass -->
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--样式切换-->
+  
+  
+<link rel="stylesheet" href="/css/material3.css">
+
+  
+  
+  
+  
+  <!--highlight.js CSS-->
+  
+  
+<link rel="stylesheet" href="/css/highlight/github.css">
+
+  
+  
+  <!-- jquery -->
+  
+  <script src="/js/jquery.min.js"></script>
+  
+  <!--Comment-->
+  
+  <!--Vercel Audiences Analytics-->
+  
+  <!--umami analytics-->
+  
+  
+  
+  
+  
+  
+  <!-- Google Search Advanced
+  https://developers.google.com/search/docs/advanced/structured-data/search-gallery
+  -->
+  
+  
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": "后处理方法简单汇总",
+      "image": "",
+      "datePublished": "Mon Jan 15 2018 08:18:41 GMT+0800",
+      "author": [{
+        "@type": "Person",
+        "name": "UncleMask",
+        "url": "https://unclemaskcrl.github.io"
+      }]
+    }
+  </script>
+  
+  
+  
+  <!--<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      spacing: {
+        '1': '8px',
+        '2': '12px',
+        '3': '16px',
+        '4': '24px',
+        '5': '32px',
+        '6': '48px',
+      },
+      container: {
+        center: true,
+      },
+      extend: {
+        colors: {
+          tblack: '#222831',
+        },
+        boxShadow: {
+          'itp': '1px 10px 30px 0 rgb(0 0 0 / 10%)',
+        }
+      }
+    }
+  }
+</script>-->
+
+<link rel="stylesheet" href="/css/tailwind.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!--Other Pages-->
+
+
+<body>
+  <!-- Nav -->
+  
+
+
+<div class="itp-float-bar">
+  <!--所有页面都显示-->
+  <a class="itp-float-bar-item rounded" href="/" title="UncleMask 的博客">
+    
+    <iconpark-icon class="navicon" name="home"></iconpark-icon>
+    
+  </a>
+  
+  <!--只在 **文章** 页面显示-->
+  <a class="itp-float-bar-item rounded" onclick="scrollto(comment)" title="comment">
+    
+    <iconpark-icon class="navicon" name="comment"></iconpark-icon>
+    
+  </a>
+  <a class="itp-float-bar-item rounded" id="open_toc" onclick="OpenToc()" title="Table of contents">
+    
+    <iconpark-icon class="navicon" name="list"></iconpark-icon>
+    
+  </a>
+  <a class="itp-float-bar-item rounded" href="javascript:scroll(0,0)" title="to top">
+    
+    <iconpark-icon class="navicon" name="top"></iconpark-icon>
+    
+  </a>
+  
+
+  <div class="itp-float-layer itp-toc-layer">
+    <div class="clost-btn" style="display: flex;">
+      <a class="itp-float-layer-close-btn" id="close_btn">
+        <div class="close_btn_red">
+        </div>
+      </a>
+    </div>
+    
+  </div>
+  <div class="itp-float-layer-bg layer-bg-nodisplay" id="close_layer"></div>
+</div>
+
+
+<style>
+  .navicon {
+    font-size: 18px;
+    padding-top: 18px;
+    color: var(--main-black);
+  }
+</style>
+  <!-- Main Content -->
+  
+
+<section class="pjax-area">
+  <div class="content-area post-content-area">
+    <div class=" left-area"></div>
+    <div class="main-area">
+      <div class="itp-m3-card post-cover">
+        <div class="itp-m3-card-cover">
+          <div class="itp-m3-cover-bg" style="
+          background-image: url();
+          background-size: cover;
+          background-position: center center;
+        ">
+            <div class="itp-m3-card-cover-layer ">
+              <div class="info-area pjax-area">
+                <div class="itp-m3-cover-avatar">
+                  <img src="" class="nofancy">
+                </div>
+                <div class="itp-m3-cover-title" style="opacity: 1;">
+                  后处理方法简单汇总
+                </div>
+                <div class="itp-m3-cover-subtitle" style="opacity: 0.8;">
+                  
+2018-01-15
+<span> / </span>
+
+<a class="category-link" href="/categories/%E5%8C%96%E5%AD%A6/">化学</a>
+
+
+<span> / </span>
+3.1k
+<style>
+  .category-link {
+    color: var(--main-black);
+  }
+
+  @media print {
+    .itp-cover-subtitle a {
+      color: var(--main-black) !important;
+    }
+  }
+
+  @media screen {
+    .itp-cover-subtitle a {
+      color: #fff !important;
+    }
+  }
+</style>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article">
+          <p>有机酸碱性化合物的分离提纯 具有酸碱性基团的有机化合物，可以得失质子形成离子化合物，而离子化合物与原来的母体化合物具有不同的物理化学性质。碱性化合物用有机酸或无机酸处理得到胺盐，酸性化合物用有机碱或无机碱处理得到钠盐或有机盐。根据有机化合物酸碱性的强弱，有机、无机酸碱一般为甲酸、乙酸、盐酸、硫酸、磷酸。碱为三乙胺、氢氧化钠、氢氧化钾、碳酸钠、碳酸氢钠等。在一般情况下，离子化合物在水中具有相当大的溶解性，而在有机溶剂中溶解度很小，同时活性碳只能够吸附非离子型的杂质和色素。利用以上的这些性质可对酸碱性有机化合物进行提纯。以上性质对所有酸碱性化合物并不通用，一般情况下，分子中酸碱性基团分子量所占整个分子的分子量比例越大，则离子化合物的水溶性就越大，分子中含有的水溶性基团例如羟基越多，则水溶性越大，因此，以上性质适用于小分子的酸碱化合物。对于大分子的化合物，则水溶性就明显降低。 酸碱性基团包括氨基。酸性基团包括：酰氨基、羧基、酚羟基、磺酰氨基、硫酚基、1，3－二羰基化合物等等。值得注意的是，氨基化合物一般为碱性基团，但是在连有强吸电子基团时就变为酸性化合物，例如酰氨基和磺酰氨基化合物，这类化合物在氢氧化钠、氢氧化钾等碱作用下就容易失去质子而形成钠盐。 中合吸附法：将酸碱性化合物转变为离子化合物，使其溶于水，用活性碳吸附杂质后过滤，则除去了不含酸碱性基团的杂质和机械杂质，再加酸碱中合回母体分子状态，这是回收和提纯酸碱性产品的方法。由于活性碳不吸附离子，故有活性碳吸附造成的产品损失忽劣不计。 中和萃取法：是工业过程和实验室中常见的方法，它利用酸碱性有机化合物生成离子时溶于水而母体分子状态溶于有机溶剂的特点，通过加入酸碱使母体化合物生成离子溶于水实现相的转移而用非水溶性的有机溶剂萃取非酸碱性杂质，使其溶于有机溶剂从而实现杂质与产物分离的方法。 成盐法：对于非水溶性的大分子有机离子化合物，可使有机酸碱性化合物在有机溶剂中成盐析出结晶来，而非成盐的杂质依然留在有机溶剂中，从而实现有机酸碱性化合物与非酸碱性杂质分离，酸碱性有机杂质的分离可通过将析出的结晶再重结晶，从而将酸碱性有机杂质分离。对于大分子的有机酸碱化合物的盐此时还可以采用水洗涤除去小分子的酸碱化合物已经成盐且具有水溶性的杂质。 对于水溶性的有机离子化合物，可在水中成盐后，将水用共沸蒸馏或直接蒸馏除去，残余物用有机溶剂充分洗涤几次，从而将杂质与产品分离。以上三种方法并不是孤立的，可根据化合物的性质和产品质量标准的要求，采用相结合的方法，尽量得到相当纯度的产品。 几种特殊的有机萃取溶剂 正丁醇：大多数的小分子醇是水溶性的，例如甲醇、乙醇、异丙醇、正丙醇等。大多数的高分子量醇是非水溶性的，而是亲脂性的能够溶于有机溶剂。但是中间的醇类溶剂例如正丁醇是一个很好的有机萃取溶剂。正丁醇本身不溶于水，同时又具有小分子醇和大分子醇的共同特点。它能够溶解一些能够用小分子醇溶解的极性化合物，而同时又不溶于水。利用这个性质可以采用正丁醇从水溶液中萃取极性的反应产物 丁酮：性质介于小分子酮和大分子酮之间。不像丙酮能够溶于水，丁酮不溶于水，可用来从水中萃取产物 乙酸丁酯：性质介于小分子和大分子酯之间，在水中的溶解度极小，不像乙酸乙酯在水中有一定的溶解度，可从水中萃取有机化合物，尤其是氨基酸的化合物，因此在抗生素工业中常用来萃取头孢、青霉素等大分子含氨基酸的化合物 异丙醚与特丁基叔丁基醚：性质介于小分子和大分子醚之间，两者的极性相对较小，类似于正己烷和石油醚，二者在水中的溶解度较小。可用于极性非常小的分子的结晶溶剂和萃取溶剂。也可用于极性较大的化合物的结晶和萃取溶剂。 做完反应后，应该首先采用萃取的方法，首先除去一部分杂质，这是利用杂质与产物在不同溶剂中的溶解度不同的性质 稀酸的水溶液洗去一部分碱性杂质。例如，反应物为碱性，而产物为中性，可用稀酸洗去碱性反应物。例如胺基化合物的酰化反应。 稀碱的水溶液洗去一部分酸性杂质。反应物为酸性，而产物为中性，可用稀碱洗去酸性反应物。例如羧基化合物的酯化反应。 用水洗去一部分水溶性杂质。例如，低级醇的酯化反应，可用水洗去水溶性的反应物醇。 如果产物要从水中结晶出来，且在水溶液中的溶解度又较大，可尝试加入氯化钠、氯化铵等无机盐，降低产物在水溶液中的溶解度－盐析的方法。 有时可用两种不互溶的有机溶剂作为萃取剂，例如反应在氯仿中进行，可用石油醚或正己烷作为萃取剂来除去一部分极性小的杂质，反过来可用氯仿萃取来除去极性大的杂质。 两种互溶的溶剂有时加入另外一种物质可变的互不相容，例如，在水作溶剂的情况下，反应完毕后，可往体系中加入无机盐氯化钠，氯化钾使水饱和，此时加入丙酮，乙醇，乙腈等溶剂可将产物从水中提取出来。 结晶与重结晶的方法 基本原理是利用相似相容原理。即极性强的化合物用极性溶剂重结晶，极性弱的化合物用非极性溶剂重结晶。对于较难结晶的化合物，例如油状物、胶状物等有时采用混合溶剂的方法，但是混合溶剂的搭配很有学问，有时只能根据经验。一般采用极性溶剂与非极性溶剂搭配，搭配的原则一般根据产物与杂质的极性大小来选择极性溶剂与非极性溶剂的比例。若产物极性较大，杂质极性较小则溶剂中极性溶剂的比例大于非极性溶剂的比例；若产物极性较小，杂质极性较大，则溶剂中非极性溶剂的比例大于极性溶剂的比例。较常用的搭配有：醇－石油醚，丙酮－石油醚，醇－正己烷，丙酮－正己烷等。但是如果产物很不纯或者杂质与产物的性质及其相近，得到纯化合物的代价就是多次的重结晶，有时经多次也提不纯。这时一般较难除去的杂质肯定与产物的性质与极性及其相近。除去杂质只能从反应上去考虑了。 水蒸气蒸馏、减压蒸馏与精馏的方法 这是提纯低熔点化合物的常用方法。一般情况下，减压蒸馏的回收率相应较低，这是因为随着产品的不断蒸出，产品的浓度逐渐降低，要保证产品的饱和蒸汽压等于外压，必须不断提高温度，以增加产品的饱和蒸汽压，显然，温度不可能无限提高，即产品的饱和蒸汽压不可能为零，也即产品不可能蒸净，必有一定量的产品留在蒸馏设备内被设备内的难挥发组分溶解，大量的斧残既是证明。 共沸蒸馏不仅适用于产品分离过程，也适用于反应物系的脱水、溶剂的脱水、产品的脱水等。它比分子筛、无机盐脱水工艺具有设备简单、操作容易、不消耗其它原材料等优点。例如：在生产氨噻肟酸时，由于分子中存在几个极性的基团氨基、羧基等，它们能够和水、醇等分子形成氢键，使氨噻肟酸中存在大量的游离及氢键的水，如采用一般的真空干燥等干燥方法，不仅费时，也容易造成产物的分解，这时可采用共沸蒸馏的方法将水分子除去，具体的操作为将氨噻肟酸与甲醇在回流下搅拌几小时，可将水分子除去，而得到无水氨噻肟酸。又比如，当分子中存在游离的或氢键的甲醇时，可用另外一种溶剂，例如正己烷、石油醚等等，进行回流，可除去甲醇。可见共沸蒸馏在有机合成的分离过程中占有重要的地位。 超分子的方法，利用分子的识别性来提纯产物 脱色的方法 一般采用活性炭、硅胶、氧化铝等。活性炭吸附非极性的化合物与小分子的化合物，硅胶与氧化铝吸附极性强的与大分子的化合物，例如焦油等。对于极性杂质与非极性杂质同时存在的物系，应将两者同时结合起来。比较难脱色的物系，一般用硅胶和氧化铝就能脱去。对于酸碱性化合物的脱色，有时比较难，当将酸性化合物用碱中和形成离子化合物而溶于水中进行脱色时，除了在弱碱性条件下脱色一次除去碱性杂质外，还应将物系逐渐中和至弱酸性，再脱色一次除去酸性杂质，这样就将色素能够完全脱去。同样当将碱性化合物用酸中和至弱碱性溶于水进行脱色时，除了在弱酸性条件下脱色一次除去酸性杂质外，还应将物系逐渐中和至弱碱性，再脱色一次除去碱性杂质。</p>
+
+        </div>
+        <div class="itp-m3-post-info_area">
+          <div class="info_area-category">
+            
+            <div class="itp-m3-chip-color-list">
+              <a class="category-link" href="/categories/%E5%8C%96%E5%AD%A6/">化学</a>
+            </div>
+            
+            
+            <div class="itp-m3-chip-normal-list">
+              <a class="tag-none-link" href="/tags/%E5%90%8E%E5%A4%84%E7%90%86/" rel="tag">后处理</a><a class="tag-none-link" href="/tags/%E5%AE%9E%E9%AA%8C%E6%93%8D%E4%BD%9C/" rel="tag">实验操作</a>
+            </div>
+            
+          </div>
+          <div class="info_area-copyright">
+            <p>本文著作权归作者&nbspUncleMask&nbsp所有，转载或引用请联系作者获得授权。</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="right-area">
+      
+      
+
+      
+    </div>
+  </div>
+  
+  <!--
+<div class="mdui-dialog" id="shareDialogText" style="text-align: center;">
+  <div class="itp-share-card" id="shareInfo">
+    <div class="itp-share-cover" style="background: url('');">
+      <div class="itp-share-layer">
+        <div class="itp-share-info">
+          <div class="itp-share-avatar">
+            <img src="" class="nofancy">
+          </div>
+          <div class="itp-share-title">后处理方法简单汇总</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mdui-dialog" id="shareDialogImg" style="text-align: center;">
+  分享图已生成
+</div>-->
+</section>
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="itp-footer text-center">
+  <section class="footer-info">
+    UncleMask 的博客 &copy; 2016 - 2026
+    
+    <span> / </span>
+    18k
+    
+    
+    
+    <span> / Theme</span>
+    <a href="https://github.com/aiokr/hexo-theme-type" target="_blank">Type
+    </a>
+  </section>
+  
+    <a href="../about/" target="_blank">
+      <img width="80px" height="80px" style="padding-top: 12px; display: block; margin: 0 auto;" src="https://imgur.lzmun.com/picgo/after2022/tripper2whitefull.png_avatar" alt="footer logo"></a>
+  
+</footer>
+  <!-- After footer scripts -->
+  <!-- fancybox -->
+
+<script src="/js/fancybox.umd.js" defer></script>
+<link rel="stylesheet" href="/css/fancybox.css" />
+
+<!-- mdui -->
+
+<!-- busuanzi -->
+
+<!-- highlightjs -->
+
+
+<script src="/js/highlight.min.js" async></script>
+
+<script>window.addEventListener('load', () => hljs.initHighlighting());</script>
+<script>
+  $("pre.code").each(function() {
+    $(this).html("<ol><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ol>");
+  });
+</script>
+
+
+
+<script src="/js/app.js"></script>
+
+
+
+<!--
+
+<script src="/js/canvas2image.js"></script>
+
+
+<script src="/js/shareimg.js"></script>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js" defer></script>
+-->
+<!--lazyload-->
+
+
+<script src="/js/lazyload.js"></script>
+
+
+<!--PJAX-->
+<!--Pjax from https://github.com/MoOx/pjax-->
+
+<!--<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--首页键盘快捷键-->
+
+  <style>
+  :root {
+    --main-color: #71AFDD;
+    --sub-color: #6CD9CE;
+    --main-black: #222831;
+  }
+</style>
+</body>
+
+
+
+
+</html>

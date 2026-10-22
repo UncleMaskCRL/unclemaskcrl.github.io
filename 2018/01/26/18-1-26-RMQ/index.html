@@ -1,0 +1,440 @@
+<!-- @format -->
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--360 使用 Google Chrome Frame-->
+  <meta name="renderer" content="webkit">
+  <!--百度禁止转码-->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <!--Description-->
+  
+  <meta name="google-site-verification" content="J4gssmXGNI9-DfJ9w52mL5KFPlRCYvySveEN0RJFZHU" />
+  <!--Author-->
+  
+  <meta name="author" content="UncleMask">
+  
+  <!--Open Graph Title-->
+  <meta property="og:title" content="RMQ问题ST算法解决方案" />
+  <!--Open Graph Description-->
+  <meta property="og:description" content="" />
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="UncleMask 的博客" />
+  <!--Type page-->
+  
+  <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+  <meta property="og:image" content="/null" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- Title -->
+  
+  <title>RMQ问题ST算法解决方案 - UncleMask 的博客</title>
+  <!-- 添加到主屏后的标题（iOS 6 新增） -->
+  <meta name="apple-mobile-web-app-title" content="UncleMask 的博客">
+  <!-- 是否启用 WebApp 全屏模式 -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-startup-image" href="/assets/ splash-assets.png" media="(max-device-width: 700px)">
+  <!-- 禁止数字识自动别为电话号码 -->
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="shortcut icon" href="/null">
+  <!--Apple iOS Safari ICON-->
+  <link rel="apple-touch-icon" sizes="57x57" href="" />
+  <link rel="apple-touch-icon" sizes="72x72" href="" />
+  <link rel="apple-touch-icon" sizes="114x114" href="" />
+  <link rel="apple-touch-icon" sizes="144x144" href="" />
+  <!-- 添加 RSS 订阅 -->
+  <link rel="alternate" type="application/rss+xml" title="UncleMask 的博客" href="/atom.xml" />
+  <!-- uc强制竖屏 -->
+  <meta name="screen-orientation" content="portrait">
+  <!-- QQ强制竖屏 -->
+  <meta name="x5-orientation" content="portrait">
+  <!-- UC强制全屏 -->
+  <meta name="full-screen" content="yes">
+  <!-- QQ强制全屏 -->
+  <meta name="x5-fullscreen" content="true">
+  <!-- UC应用模式 -->
+  <meta name="browsermode" content="application">
+  <!-- QQ应用模式 -->
+  <meta name="x5-page-mode" content="app">
+  <!-- https://material.io/resources/icons/?style=outline -->
+  
+  <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20213_18.4a5f87dae8e6f9e336b9ad6fa00f8e8f.js"></script>
+  
+  
+<style>
+  .itp-gallery-title,
+  .itp-gallery-subtitle,
+  .itp-post-title,
+  .itp-post-entry-title,
+  .itp-post-entry-subtitle,
+  .itp-mag-logo,
+  .itp-index-title,
+  .itp-post-entry-moment,
+  .itp-header-actions-menu {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  }
+
+  .itp-header-title,
+  .itp-m3-post-entry-info .title,
+  .itp-header-actions,
+  .itp-cover-title,
+  .itp-cover-subtitle,
+  .itp-post-subtitle,
+  .itp-post-entry-title,
+  .itp-m3-cover-subtitle,
+  .itp-m3-cover-title,
+  .itp-gallery-info .title,
+  .footer-info {
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  }
+
+  .article,
+  .itp-post-entry-excerpt {
+    font-family: 'SF UI Display', '.PingFang SC', 'PingFang SC', 'Neue Haas Grotesk Text Pro', 'Arial Nova', 'Segoe UI', 'Microsoft YaHei', 'Microsoft JhengHei', 'Helvetica Neue', 'Source Han Sans SC', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC', 'Helvetica', 'Hiragino Sans GB', sans-serif;
+  }
+</style>
+
+  <!-- Custom CSS/Sass -->
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--样式切换-->
+  
+  
+<link rel="stylesheet" href="/css/material3.css">
+
+  
+  
+  
+  
+  <!--highlight.js CSS-->
+  
+  
+<link rel="stylesheet" href="/css/highlight/github.css">
+
+  
+  
+  <!-- jquery -->
+  
+  <script src="/js/jquery.min.js"></script>
+  
+  <!--Comment-->
+  
+  <!--Vercel Audiences Analytics-->
+  
+  <!--umami analytics-->
+  
+  
+  
+  
+  
+  
+  <!-- Google Search Advanced
+  https://developers.google.com/search/docs/advanced/structured-data/search-gallery
+  -->
+  
+  
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": "RMQ问题ST算法解决方案",
+      "image": "",
+      "datePublished": "Fri Jan 26 2018 12:13:35 GMT+0800",
+      "author": [{
+        "@type": "Person",
+        "name": "UncleMask",
+        "url": "https://unclemaskcrl.github.io"
+      }]
+    }
+  </script>
+  
+  
+  
+  <!--<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      spacing: {
+        '1': '8px',
+        '2': '12px',
+        '3': '16px',
+        '4': '24px',
+        '5': '32px',
+        '6': '48px',
+      },
+      container: {
+        center: true,
+      },
+      extend: {
+        colors: {
+          tblack: '#222831',
+        },
+        boxShadow: {
+          'itp': '1px 10px 30px 0 rgb(0 0 0 / 10%)',
+        }
+      }
+    }
+  }
+</script>-->
+
+<link rel="stylesheet" href="/css/tailwind.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!--Other Pages-->
+
+
+<body>
+  <!-- Nav -->
+  
+
+
+<div class="itp-float-bar">
+  <!--所有页面都显示-->
+  <a class="itp-float-bar-item rounded" href="/" title="UncleMask 的博客">
+    
+    <iconpark-icon class="navicon" name="home"></iconpark-icon>
+    
+  </a>
+  
+  <!--只在 **文章** 页面显示-->
+  <a class="itp-float-bar-item rounded" onclick="scrollto(comment)" title="comment">
+    
+    <iconpark-icon class="navicon" name="comment"></iconpark-icon>
+    
+  </a>
+  <a class="itp-float-bar-item rounded" id="open_toc" onclick="OpenToc()" title="Table of contents">
+    
+    <iconpark-icon class="navicon" name="list"></iconpark-icon>
+    
+  </a>
+  <a class="itp-float-bar-item rounded" href="javascript:scroll(0,0)" title="to top">
+    
+    <iconpark-icon class="navicon" name="top"></iconpark-icon>
+    
+  </a>
+  
+
+  <div class="itp-float-layer itp-toc-layer">
+    <div class="clost-btn" style="display: flex;">
+      <a class="itp-float-layer-close-btn" id="close_btn">
+        <div class="close_btn_red">
+        </div>
+      </a>
+    </div>
+    
+  </div>
+  <div class="itp-float-layer-bg layer-bg-nodisplay" id="close_layer"></div>
+</div>
+
+
+<style>
+  .navicon {
+    font-size: 18px;
+    padding-top: 18px;
+    color: var(--main-black);
+  }
+</style>
+  <!-- Main Content -->
+  
+
+<section class="pjax-area">
+  <div class="content-area post-content-area">
+    <div class=" left-area"></div>
+    <div class="main-area">
+      <div class="itp-m3-card post-cover">
+        <div class="itp-m3-card-cover">
+          <div class="itp-m3-cover-bg" style="
+          background-image: url();
+          background-size: cover;
+          background-position: center center;
+        ">
+            <div class="itp-m3-card-cover-layer ">
+              <div class="info-area pjax-area">
+                <div class="itp-m3-cover-avatar">
+                  <img src="" class="nofancy">
+                </div>
+                <div class="itp-m3-cover-title" style="opacity: 1;">
+                  RMQ问题ST算法解决方案
+                </div>
+                <div class="itp-m3-cover-subtitle" style="opacity: 0.8;">
+                  
+2018-01-26
+<span> / </span>
+
+<a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><span class="itp-post-cat"></span><span> / </span><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%8E%9F%E5%88%9B/">原创</a>
+
+
+<span> / </span>
+1.1k
+<style>
+  .category-link {
+    color: var(--main-black);
+  }
+
+  @media print {
+    .itp-cover-subtitle a {
+      color: var(--main-black) !important;
+    }
+  }
+
+  @media screen {
+    .itp-cover-subtitle a {
+      color: #fff !important;
+    }
+  }
+</style>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article">
+          <p>对于我开了这个问题的坑这件事我表示非常后悔，因为由这个问题我又学到了LCA问题的几种解决方法，其中有一种叫做Tarjan算法的又是一个大坑。所以由The Water Problem引申出的这些问题，我将会陆续写三篇blog来解决所有问题。 RMQ问题，简单来说就是对于一组数据查找某段数字中的最大或最小值，为了表述方便之后都以最大值为例。首先规定(F[i,j])表示从第i个数起连续(2^j)个数中的最大值。例如：A数列为：3 2 4 5 6 8 1 2 9 7(F[1,0])表示第1个数起，长度为(2^0)&#x3D;1的最大值，其实就是3这个数。同理 (F[1,1]) &#x3D; max(3,2) &#x3D; 3, (F[1，2]) &#x3D;max(3,2,4,5) &#x3D; 5，(F[1，3]) &#x3D; max(3,2,4,5,6,8,1,2) &#x3D; 8。而且很容易发现(F[i,0]) &#x3D; A[i]。而整体就是一个DP过程，经过简单的观察可得到(F[i,j]&#x3D;max(F[i,j - 1], F[i + 2^{j-1},j-1]))。 接下来就是查询的过程，假如我们需要查询的区间为(p,q)，那么我们需要找到覆盖这个闭区间的最小幂（可以重复，比如查询1，2，3，4，5，我们可以查询1234和2345）。因为这个区间的长度为q-p+1,所以我们可以取k&#x3D;(log_2 (q - p + 1))，则有：(RMQ(p, q)&#x3D;max(F[p,k], F[q - 2 ^ k + 1,k]))。举例说明，要求区间[1，5]的最大值，k &#x3D;(log_2 (5 - 1 + 1)) &#x3D; 2，即求(max(F[1, 2]，F[5 - 2 ^ 2 + 1, 2])&#x3D;max(F[1, 2]，F[2, 2]))；算法实现如下：1234567891011121314void ST(int n) { for (int i &#x3D; 1; i &lt;&#x3D; n; i++) dp[i][0] &#x3D; A[i]; for (int j &#x3D; 1; (1 &lt;&lt; j) &lt;&#x3D; n; j++) { for (int i &#x3D; 1; i + (1 &lt;&lt; j) - 1 &lt;&#x3D; n; i++) { dp[i][j] &#x3D; max(dp[i][j - 1], dp[i + (1 &lt;&lt; (j - 1))][j - 1]); } } } int RMQ(int l, int r) { int k &#x3D; 0; while ((1 &lt;&lt; (k + 1)) &lt;&#x3D; r - l + 1) k++; return min(dp[l][k], dp[r - (1 &lt;&lt; k) + 1][k]); } 相关例题HD5443(史上最良心标题)</p>
+
+        </div>
+        <div class="itp-m3-post-info_area">
+          <div class="info_area-category">
+            
+            <div class="itp-m3-chip-color-list">
+              <a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%8E%9F%E5%88%9B/">原创</a>
+            </div>
+            
+            
+            <div class="itp-m3-chip-normal-list">
+              <a class="tag-none-link" href="/tags/%E6%A8%A1%E6%9D%BF/" rel="tag">模板</a><a class="tag-none-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+            </div>
+            
+          </div>
+          <div class="info_area-copyright">
+            <p>本文著作权归作者&nbspUncleMask&nbsp所有，转载或引用请联系作者获得授权。</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="right-area">
+      
+      
+
+      
+    </div>
+  </div>
+  
+  <!--
+<div class="mdui-dialog" id="shareDialogText" style="text-align: center;">
+  <div class="itp-share-card" id="shareInfo">
+    <div class="itp-share-cover" style="background: url('');">
+      <div class="itp-share-layer">
+        <div class="itp-share-info">
+          <div class="itp-share-avatar">
+            <img src="" class="nofancy">
+          </div>
+          <div class="itp-share-title">RMQ问题ST算法解决方案</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mdui-dialog" id="shareDialogImg" style="text-align: center;">
+  分享图已生成
+</div>-->
+</section>
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="itp-footer text-center">
+  <section class="footer-info">
+    UncleMask 的博客 &copy; 2016 - 2026
+    
+    <span> / </span>
+    18k
+    
+    
+    
+    <span> / Theme</span>
+    <a href="https://github.com/aiokr/hexo-theme-type" target="_blank">Type
+    </a>
+  </section>
+  
+    <a href="../about/" target="_blank">
+      <img width="80px" height="80px" style="padding-top: 12px; display: block; margin: 0 auto;" src="https://imgur.lzmun.com/picgo/after2022/tripper2whitefull.png_avatar" alt="footer logo"></a>
+  
+</footer>
+  <!-- After footer scripts -->
+  <!-- fancybox -->
+
+<script src="/js/fancybox.umd.js" defer></script>
+<link rel="stylesheet" href="/css/fancybox.css" />
+
+<!-- mdui -->
+
+<!-- busuanzi -->
+
+<!-- highlightjs -->
+
+
+<script src="/js/highlight.min.js" async></script>
+
+<script>window.addEventListener('load', () => hljs.initHighlighting());</script>
+<script>
+  $("pre.code").each(function() {
+    $(this).html("<ol><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ol>");
+  });
+</script>
+
+
+
+<script src="/js/app.js"></script>
+
+
+
+<!--
+
+<script src="/js/canvas2image.js"></script>
+
+
+<script src="/js/shareimg.js"></script>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js" defer></script>
+-->
+<!--lazyload-->
+
+
+<script src="/js/lazyload.js"></script>
+
+
+<!--PJAX-->
+<!--Pjax from https://github.com/MoOx/pjax-->
+
+<!--<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--首页键盘快捷键-->
+
+  <style>
+  :root {
+    --main-color: #71AFDD;
+    --sub-color: #6CD9CE;
+    --main-black: #222831;
+  }
+</style>
+</body>
+
+
+
+
+</html>
