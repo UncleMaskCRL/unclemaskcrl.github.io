@@ -1,0 +1,109 @@
+/* ============================================================
+ * 全站自定义样式(从 node_modules/_customize.scss 迁移而来,入库版本)
+ * 主题定制统一改这里,不要再改 node_modules 里的文件(不入库、会丢)
+ * ============================================================ */
+
+/* 站酷小薇 ZCOOL XiaoWei 标题字体 */
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
+
+/* 封面标题:更大 + 飘逸字体(用高优先级选择器覆盖主题默认) */
+.top-cover .info-area .itp-m3-cover-title,
+.itp-m3-card.top-cover .info-area .itp-m3-cover-title {
+  font-family: 'ZCOOL XiaoWei', 'LXGWBright', -apple-system, 'PingFang SC',
+    'Microsoft YaHei', sans-serif !important;
+  font-size: 72px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.02em;
+}
+.itp-m3-cover-title,
+.itp-m3-cover-title a {
+  color: #fff;
+}
+
+/* 全页背景图 */
+body {
+  background-color: #f5f5f5;
+  background-image: url('/images/bg-full.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* 磨砂玻璃卡片:内容卡片半透明 + 背景模糊 */
+.itp-m3-card {
+  background-color: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* 封面大卡片:深色半透明 + 模糊,透出全页背景(保持白字可读) */
+.itp-m3-card.top-cover {
+  background-color: rgba(20, 24, 35, 0.35);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.itp-m3-card.top-cover .itp-m3-cover-bg {
+  background-image: none !important;
+  background-color: transparent;
+}
+.itp-m3-card.top-cover .itp-m3-cover-layer,
+.itp-m3-card.top-cover .itp-m3-card-cover-layer {
+  background: linear-gradient(
+    rgba(20, 24, 35, 0.15) 0%,
+    rgba(20, 24, 35, 0.45) 100%
+  );
+}
+
+/* 文章列表小卡片:磨砂但更通透 */
+.itp-m3-card.post-entry {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* 分页、上一页下一页卡片 */
+.m3-pagination-card,
+.next-card,
+.prev-card {
+  background-color: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  backdrop-filter: blur(10px) saturate(150%);
+}
+
+/* ===== 会议报告表格:每行保持一行不换行,超宽时横向滚动 ===== */
+.article {
+  overflow-x: auto;
+}
+.article table {
+  table-layout: auto !important;
+  width: auto !important;
+  max-width: none !important;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+.article th,
+.article td {
+  white-space: nowrap;
+  padding: 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  text-align: left;
+  vertical-align: top;
+}
+/* 手机端(≤768px):字号再缩小,适配窄屏 */
+@media screen and (max-width: 768px) {
+  .article table { font-size: 0.68rem; }
+  .article th,
+  .article td { padding: 3px 5px; }
+  .conf-cb { width: 16px; height: 16px; }
+}
+.article th {
+  background-color: rgba(113, 175, 221, 0.18);
+  font-weight: 600;
+}
+/* 斑马纹,方便扫读长表 */
+.article tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.03);
+}

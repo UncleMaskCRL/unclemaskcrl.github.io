@@ -2,43 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/15/18-1-15-BST/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/15/hello-world/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/17/18-1-16-topo/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/15/18-1-15-HCL/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/16/2018-1-16-ZDLJ/</loc>
+    <loc>https://unclemaskcrl.github.io/2026/10/22/2026-10-22-conf-report/</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -56,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/17/18-1-18-BCJ/</loc>
+    <loc>https://unclemaskcrl.github.io/2018/01/22/2018-1-22-BWL/</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -65,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/20/18-1-20-CJJ/</loc>
+    <loc>https://unclemaskcrl.github.io/2018/01/15/hello-world/</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -74,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/19/18-1-20-CQ/</loc>
+    <loc>https://unclemaskcrl.github.io/2018/02/01/18-2-1-LCA/</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -83,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/19/18-1-20-TLC/</loc>
+    <loc>https://unclemaskcrl.github.io/2018/01/16/2018-1-16-ZDLJ/</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -101,15 +65,6 @@
   </url>
   
   <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/26/18-1-26-RMQ/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://unclemaskcrl.github.io/2018/01/26/18-1-26-MGJM/</loc>
     
     <lastmod>2026-10-22</lastmod>
@@ -119,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://unclemaskcrl.github.io/2018/01/22/2018-1-22-BWL/</loc>
+    <loc>https://unclemaskcrl.github.io/2018/01/26/18-1-26-RMQ/</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -128,7 +83,61 @@
   </url>
   
   <url>
-    <loc>https://unclemaskcrl.github.io/2018/02/01/18-2-1-LCA/</loc>
+    <loc>https://unclemaskcrl.github.io/2018/01/19/18-1-20-TLC/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclemaskcrl.github.io/2018/01/19/18-1-20-CQ/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclemaskcrl.github.io/2018/01/20/18-1-20-CJJ/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclemaskcrl.github.io/2018/01/15/18-1-15-HCL/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclemaskcrl.github.io/2018/01/17/18-1-18-BCJ/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclemaskcrl.github.io/2018/01/15/18-1-15-BST/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclemaskcrl.github.io/2018/01/17/18-1-16-topo/</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -209,6 +218,13 @@
   </url>
   
   <url>
+    <loc>https://unclemaskcrl.github.io/tags/%E4%BC%9A%E8%AE%AE/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://unclemaskcrl.github.io/tags/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -247,6 +263,13 @@
   
   <url>
     <loc>https://unclemaskcrl.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%86%9C%E6%99%B4/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://unclemaskcrl.github.io/categories/%E4%BC%9A%E8%AE%AE/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
