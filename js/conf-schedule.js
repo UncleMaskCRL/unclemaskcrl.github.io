@@ -32,6 +32,131 @@
   }
   function save(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
 
+  // ---- 导出图片辅助 ----
+  function wrapText(ctx, text, maxWidth) {
+    var lines = [], line = '', w = 0;
+    for (var i = 0; i < text.length; i++) {
+      var ch = text[i];
+      var cw = ctx.measureText(ch).width;
+      if (w + cw > maxWidth && line) { lines.push(line); line = ch; w = cw; }
+      else { line += ch; w += cw; }
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  // 把当前「我的日程」画成一张 PNG,自动下载到本地
+  function exportImage() {
+    var s = load();
+    var list = Object.keys(s).map(function (k) { return s[k]; });
+    if (!list.length) { alert('还没有选择任何报告,先去下面各表格勾选吧'); return; }
+    list.sort(function (a, b) {
+      if (a.dateNum !== b.dateNum) return a.dateNum - b.dateNum;
+      return a.tStart - b.tStart;
+    });
+
+    var W = 800, PAD = 36;
+    var FONT = '"Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif';
+    var CARD = '#f4f8fc', CARD_RED = '#fdf3f3';
+    var BAR = '#71afdd', BAR_RED = '#e53935';
+    var C_TITLE = '#1c2733', C_SUB = '#5a6b7d', C_BODY = '#33424f';
+
+    // 第一步:离屏测量每条的文字行数与卡片高度
+    var meas = document.createElement('canvas').getContext('2d');
+    meas.font = '15px ' + FONT;
+    var maxTextW = W - PAD * 2 - 28;
+    var items = list.map(function (it, idx) {
+      var conflict = false;
+      for (var k = 0; k < list.length; k++) {
+        if (k === idx) continue;
+        var o = list[k];
+        if (o.dateNum === it.dateNum && it.tStart < o.tEnd && o.tStart < it.tEnd) { conflict = true; break; }
+      }
+      var title = (it.title && it.title !== '—') ? it.title : '';
+      var org = (it.org && it.org !== '—') ? it.org : '';
+      var lines = [];
+      lines.push({ t: (conflict ? '⚠️ 与其它所选报告冲突　' : '') + it.date + ' ' + it.time, bold: true, size: 17, color: C_TITLE });
+      lines.push({ t: '📍 ' + it.venue + (it.hall ? '　·　' + it.hall : ''), size: 14, color: C_SUB });
+      lines.push({ t: it.speaker + (org ? ' · ' + org : ''), size: 15, color: C_BODY });
+      if (title) {
+        wrapText(meas, title, maxTextW).forEach(function (l) {
+          lines.push({ t: l, size: 14, color: C_BODY });
+        });
+      }
+      var h = 18;
+      lines.forEach(function (l) { h += l.size * 1.55; });
+      h += 18;
+      return { it: it, lines: lines, h: h, conflict: conflict };
+    });
+
+    // 第二步:算总画布高度
+    var titleH = 116;
+    var H = PAD + titleH;
+    items.forEach(function (it) { H += it.h + 12; });
+    H += 54;
+
+    // 第三步:正式绘制(2倍清晰度)
+    var scale = 2;
+    var cv = document.createElement('canvas');
+    cv.width = W * scale; cv.height = H * scale;
+    var ctx = cv.getContext('2d');
+    ctx.scale(scale, scale);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.textBaseline = 'alphabetic';
+    ctx.font = 'bold 26px ' + FONT;
+    ctx.fillStyle = C_TITLE;
+    ctx.fillText('我的参会日程', PAD, PAD + 30);
+    ctx.font = '14px ' + FONT;
+    ctx.fillStyle = C_SUB;
+    ctx.fillText('第十三届有机固体电子过程暨华人有机光电功能材料学术讨论会', PAD, PAD + 56);
+    var now = new Date();
+    var mm = String(now.getMonth() + 1).padStart(2, '0');
+    var dd = String(now.getDate()).padStart(2, '0');
+    var hh = String(now.getHours()).padStart(2, '0');
+    var mi = String(now.getMinutes()).padStart(2, '0');
+    ctx.fillText('共 ' + list.length + ' 场　·　生成于 ' + now.getFullYear() + '-' + mm + '-' + dd + ' ' + hh + ':' + mi, PAD, PAD + 78);
+
+    var y = PAD + titleH;
+    items.forEach(function (it) {
+      ctx.fillStyle = it.conflict ? CARD_RED : CARD;
+      roundRect(ctx, PAD, y, W - PAD * 2, it.h, 8);
+      ctx.fill();
+      ctx.fillStyle = it.conflict ? BAR_RED : BAR;
+      ctx.fillRect(PAD, y + 10, 4, it.h - 20);
+      var ty = y + 18;
+      it.lines.forEach(function (l) {
+        ctx.font = (l.bold ? 'bold ' : '') + l.size + 'px ' + FONT;
+        ctx.fillStyle = l.color;
+        ctx.fillText(l.t, PAD + 20, ty + l.size);
+        ty += l.size * 1.55;
+      });
+      y += it.h + 12;
+    });
+
+    ctx.font = '12px ' + FONT;
+    ctx.fillStyle = '#9aa7b4';
+    ctx.fillText('由 UncleMask\'s lab 会议报告页生成 · 勾选数据仅存在本机浏览器', PAD, H - 22);
+
+    // 下载
+    var a = document.createElement('a');
+    a.download = '我的参会日程-' + list[0].date + '等' + list.length + '场.png';
+    a.href = cv.toDataURL('image/png');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
   function render() {
     var box = document.getElementById('schedule-list');
     if (!box) return;
@@ -90,8 +215,10 @@
         '<div class="sched-hint">勾选下方各报告行最左侧的按钮,这里会按「日期 + 时间」排好你要听哪场、在哪个场馆、听谁的什么报告。' +
         '数据只存在你本机浏览器(localStorage)里,换电脑或清缓存会丢失。</div>' +
         '<div id="schedule-list"></div>' +
+        '<div style="margin-top:8px">' +
+        '<button id="export-image" type="button">📥 导出为图片</button>' +
         '<button id="clear-schedule" type="button">清空全部选择</button>' +
-        '</details>';
+        '</div></details>';
       article.insertBefore(panel, article.firstChild);
     }
 
@@ -213,6 +340,9 @@
       if (cb) cb.checked = false;
       render();
     });
+    // 导出为图片
+    var expBtn = document.getElementById('export-image');
+    if (expBtn) expBtn.addEventListener('click', exportImage);
     // 清空全部
     document.getElementById('clear-schedule').addEventListener('click', function () {
       if (!confirm('确定清空所有已选报告吗?')) return;
