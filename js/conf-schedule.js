@@ -148,13 +148,35 @@
     ctx.fillStyle = '#9aa7b4';
     ctx.fillText('由 UncleMask\'s lab 会议报告页生成 · 勾选数据仅存在本机浏览器', PAD, H - 22);
 
-    // 下载
+    // 生成图片 dataURL
+    var url = cv.toDataURL('image/png');
+    var fname = '我的参会日程-' + list[0].date + '等' + list.length + '场.png';
+
+    // 1) 桌面浏览器:尝试自动下载
     var a = document.createElement('a');
-    a.download = '我的参会日程-' + list[0].date + '等' + list.length + '场.png';
-    a.href = cv.toDataURL('image/png');
+    a.download = fname;
+    a.href = url;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+
+    // 2) 移动端兜底:把图片直接显示在面板里,长按保存到相册
+    //    (手机浏览器不支持 a.download 自动下载,只能预览手动存)
+    var box = document.getElementById('export-preview');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'export-preview';
+      box.style.cssText = 'margin-top:12px;padding-top:12px;border-top:1px dashed rgba(113,175,221,0.5)';
+      var panel = document.getElementById('my-schedule-panel');
+      if (panel) panel.appendChild(box);
+    }
+    box.innerHTML =
+      '<div style="font-size:0.8rem;color:#5a6b7d;margin-bottom:6px">' +
+      '🖼️ 已生成日程图片 — <b>手机长按图片 → 保存到相册</b>;桌面可右键图片另存。' +
+      '</div>' +
+      '<img src="' + url + '" alt="我的参会日程" ' +
+      'style="width:100%;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.15);display:block;-webkit-touch-callout:default">';
+    if (box.scrollIntoView) box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   function render() {
@@ -342,7 +364,10 @@
     });
     // 导出为图片
     var expBtn = document.getElementById('export-image');
-    if (expBtn) expBtn.addEventListener('click', exportImage);
+    if (expBtn) expBtn.addEventListener('click', function () {
+      try { exportImage(); }
+      catch (err) { alert('导出图片时出错:\n' + err.message + '\n\n' + (err.stack || '')); }
+    });
     // 清空全部
     document.getElementById('clear-schedule').addEventListener('click', function () {
       if (!confirm('确定清空所有已选报告吗?')) return;
